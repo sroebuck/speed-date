@@ -85,9 +85,9 @@ class SDateTest extends FunSuite with Logging {
       spd.minusYears(17)
     )
 
-    val overall = s1 * s2 * s3 * s4 * s5 * s6
-    logger.debug("Overall speedup is %.2f times".format(overall))
-    assert(overall > 2, "Expecting an overall speedup of at least 2 times")
+    val mean = (s1 + s2 + s3 + s4 + s5 + s6) / 6
+    logger.debug("Mean (average) speedup is %.2f times".format(mean))
+    assert(mean > 2, "Expecting an overall speedup of at least 2 times")
   }
 
 

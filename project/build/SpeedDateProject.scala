@@ -33,7 +33,7 @@ class SpeedDateProject(info: ProjectInfo) extends DefaultProject(info) with post
 
   // Maven publishing configuration...
   override def managedStyle = ManagedStyle.Maven
-  val publishTo = "Scala Tools Nexus" at "http://nexus.scala-tools.org/content/repositories/releases/"
+  val publishTo = "Scala Tools Nexus" at "http://nexus.scala-tools.org/content/repositories/snapshots/"
   Credentials(Path.userHome / ".ivy2" / ".credentials", log)
 
 }
