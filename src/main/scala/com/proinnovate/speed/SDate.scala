@@ -20,16 +20,15 @@ package com.proinnovate.speed
 import collection.mutable.WeakHashMap
 import java.util.{Calendar, GregorianCalendar, Date}
 
-final class SDate(val year: Int, val monthOfYear: Int, val dayOfMonth: Int) {
+final class SDate(val year: Int, val monthOfYear: Int, val dayOfMonth: Int) extends Ordered[SDate] {
 
   final override lazy val hashCode: Int = daysIsh
 
   final lazy val milliseconds = new GregorianCalendar(year, monthOfYear, dayOfMonth).getTimeInMillis
 
   private final lazy val daysIsh = (year << 9) | (monthOfYear << 5) | dayOfMonth
-  
-  final def >(that: SDate) = this.hashCode > that.hashCode
-  final def <(that: SDate) = this.hashCode < that.hashCode
+
+  final def compare(that: SDate) = daysIsh - that.daysIsh
   final def minusDays(days: Int) = copy(dayOfMonth = dayOfMonth - days)
   final def minusMonths(months: Int) = copy(monthOfYear = monthOfYear - months)
   final def minusYears(years: Int) = copy(year = year - years)
@@ -37,8 +36,10 @@ final class SDate(val year: Int, val monthOfYear: Int, val dayOfMonth: Int) {
   final def plusMonths(months: Int) = copy(monthOfYear = monthOfYear + months)
   final def plusYears(years: Int) = copy(year = year + years)
 
-  def copy(year: Int = year, monthOfYear: Int = monthOfYear, dayOfMonth: Int = dayOfMonth) =
+  final def copy(year: Int = year, monthOfYear: Int = monthOfYear, dayOfMonth: Int = dayOfMonth) =
     new SDate(year, monthOfYear, dayOfMonth)
+
+  final override def toString = "SDate(%d,%d,%d)".format(year, monthOfYear, dayOfMonth)
 
 }
 

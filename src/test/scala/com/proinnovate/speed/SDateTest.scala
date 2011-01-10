@@ -30,16 +30,16 @@ class SDateTest extends FunSuite with Logging {
   }
 
   test("Speed tests") {
-    val (jad, gre, jod, spd) =     (new Date(2011,1,16), new GregorianCalendar(2011,1,16),
+    val (jad, gre, jod, spd) =     (new Date(2011-1901,1,16), new GregorianCalendar(2011,1,16),
             new LocalDate(2011,1,16), new SDate(2011,1,16))
-    val (jad1, gre1, jod1, spd1) = (new Date(2010,5,4),  new GregorianCalendar(2010,5,4),
+    val (jad1, gre1, jod1, spd1) = (new Date(2010-1901,5,4),  new GregorianCalendar(2010,5,4),
             new LocalDate(2010,5,4),  new SDate(2010,5,4))
-    val (jad2, gre2, jod2, spd2) = (new Date(2011,1,16), new GregorianCalendar(2011,1,16),
+    val (jad2, gre2, jod2, spd2) = (new Date(2011-1901,1,16), new GregorianCalendar(2011,1,16),
             new LocalDate(2011,1,16), new SDate(2011,1,16))
 
     logger.debug("Create dates")
     val s1 = speedUp(
-      new Date(2011,1,16),
+      new Date(2011-1901,1,16),
       new GregorianCalendar(2011,1,16),
       new LocalDate(2011,1,16),
       new SDate(2011,1,16)
